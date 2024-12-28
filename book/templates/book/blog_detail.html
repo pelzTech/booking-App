@@ -1,0 +1,128 @@
+{% extends 'book/base.html' %}
+
+{% block title %}{{ blog.title }} - Blog Details{% endblock %}
+
+{% block content %}
+    <div class="blog-detail">
+        <h1>{{ blog.title }}</h1>
+        <p class="blog-meta"><strong>Published on:</strong> {{ blog.created_at }}</p>
+        <div class="blog-description">
+            <p>{{ blog.description }}</p>
+        </div>
+        <div class="blog-content">
+            <p>{{ blog.content }}</p> 
+        </div>
+        <a href="{% url 'blog_list' %}" class="back-link">Back to Blogs</a>
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+       
+        .blog-detail {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode{
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode header{
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode ul.nav-links li a {
+            color: #e0e0e0;
+            background-color: transparent;
+        }
+
+        body.dark-mode ul.nav-links li a:hover{
+            background-color: #333;
+        }
+
+        body.dark-mode .auth-buttons a {
+            color: #1e1e1e;
+            background-color: #e0e0e0;
+            border-color: #e0e0e0;
+        }
+
+        body.dark-mode .auth-buttons a:hover{
+            background-color: #333;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode footer{
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .social-links a{
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .social-links a:hover{
+            color: #4caf50;
+        }
+
+        body.dark-mode .menu-icon{
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .theme-switch button{
+            color: #e0e0e0;
+        }
+
+        
+        .blog-detail h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .blog-meta {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+      
+        .blog-description {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+       
+        .blog-content {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        
+        .back-link {
+            display: inline-block;
+            font-size: 1rem;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+{% endblock %}

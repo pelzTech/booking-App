@@ -1,0 +1,156 @@
+{% extends 'book/base.html' %}
+
+
+{% block title %}Support{% endblock %}
+
+{% block content %}
+<head>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+
+    
+
+        .support-page h1 {
+            color: #333;
+        }
+
+       
+        .faqs {
+            margin-top: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .faq-item h3 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .toggle-answer-icon {
+            font-size: 20px;
+            color: #badad0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-answer-icon:hover {
+            color: #0056b3;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            margin-bottom: 15px;
+        }
+
+        .contact-item a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Social Media Links Styling */
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 24px;
+            color: #0d6b7e;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<div class="support-page">
+    <h1>Support Page</h1>
+    <p>If you have any questions or need assistance, explore our FAQs below or contact us through the available channels.</p>
+
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <div class="faqs">
+        {% for faq in faqs %}
+            <div class="faq-item">
+                <h3>
+                    {{ faq.question }}
+                    <i class="fas fa-plus toggle-answer-icon" onclick="toggleAnswer(this, 'answer-{{ faq.id }}')"></i>
+                </h3>
+                <div class="faq-answer" id="answer-{{ faq.id }}">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2>Contact Information</h2>
+    <div class="contact-info">
+        {% for contact in contact_info %}
+            <div class="contact-item">
+                <h3>{{ contact.platform_name }}</h3>
+                <a href="{{ contact.link }}" target="_blank">{{ contact.link }}</a>
+                {% if contact.icon %}
+                    <img src="{{ contact.icon.url }}" alt="{{ contact.platform_name }} icon" width="50">
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <h2>Follow Us on Social Media</h2>
+    <div class="social-links">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="mailto:example@example.com" target="_blank" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    function toggleAnswer(icon, answerId) {
+        const answerElement = document.getElementById(answerId);
+
+        if (answerElement.style.display === 'none' || answerElement.style.display === '') {
+            answerElement.style.display = 'block';
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
+        } else {
+            answerElement.style.display = 'none';
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+        }
+    }
+</script>
+{% endblock %}

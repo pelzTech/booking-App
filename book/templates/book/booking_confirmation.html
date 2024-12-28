@@ -1,0 +1,13 @@
+{% extends 'book/base.html' %}
+
+{% block title %}Booking Confirmation{% endblock %}
+
+{% block content %}
+    <h1>Booking Confirmation</h1>
+    <p>Your booking has been successfully confirmed!</p>
+    <p><strong>Booking Reference:</strong> {{ booking.reference_number }}</p>
+    <p><strong>Service:</strong> {{ booking.service.name }}</p>
+    <p><strong>Booking Date:</strong> {{ booking.booking_date }}</p>
+    <p><strong>Status:</strong> Pending Payment</p>
+    <a href="{% url 'home' %}">Go back to Home</a>
+{% endblock %}

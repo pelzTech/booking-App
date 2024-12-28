@@ -1,0 +1,64 @@
+{% extends 'book/base.html' %}
+
+{% block title %}{{ service.name }} - Service Details{% endblock %}
+
+{% block content %}
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center;">
+        <h1 style="font-size: 2.5rem; color: #333; margin-bottom: 20px;">{{ service.name }}</h1>
+        <div style="font-size: 1.2rem; margin-bottom: 30px; text-align: left;">
+            <p><strong>Type:</strong> {{ service.service_type }}</p>
+            <p><strong>Price:</strong> ${{ service.price_per_unit|floatformat:2 }}</p>
+            <p><strong>Description:</strong> {{ service.description }}</p>
+            <p><strong>Location:</strong> {{ service.location }}</p>
+        </div>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <img src="{{ service.image.url }}" alt="{{ service.name }} image" style="width: 100%; max-width: 500px; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        </div>
+
+        <div style="margin-top: 20px;">
+            {% if user.is_authenticated %}
+                <a href="{% url 'book_service' service.id %}" style="padding: 15px 30px; font-size: 1.2rem; background-color: #0d6b7e; color: white; text-decoration: none; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s ease;">
+                    Book Now
+                </a>
+            {% else %}
+                <p>Please <a href="{% url 'login' %}">login</a> to book this service.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <style>
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            div {
+                font-size: 1rem;
+            }
+
+            img {
+                max-width: 100%;
+            }
+
+            a {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            div {
+                font-size: 0.9rem;
+            }
+
+            a {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+{% endblock %}

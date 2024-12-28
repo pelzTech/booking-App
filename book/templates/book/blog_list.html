@@ -1,0 +1,141 @@
+{% extends 'book/base.html' %}
+
+{% block title %}Blog - Our Posts{% endblock %}
+
+{% block content %}
+    <div class="blog-container">
+        <h1 class="blog-title">Our Latest Blog Posts</h1>
+        
+        <div class="blog-list">
+            {% for blog in blogs %}
+                <div class="blog-item">
+                    <h2 class="blog-item-title">{{ blog.title }}</h2>
+                    <p class="blog-item-description">{{ blog.description|truncatewords:20 }}</p>
+                    <p class="blog-item-date"><strong>Published on:</strong> {{ blog.created_at|date:"F j, Y" }}</p>
+                    <a href="{% url 'blog_detail' blog.id %}" class="blog-item-link">Read More</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <style>
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .blog-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .blog-item {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(33.333% - 20px);
+            max-width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-item-title {
+            font-size: 1.5rem;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .blog-item-description {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .blog-item-date {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .blog-item-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-item-link:hover {
+            background-color: #003d82;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 1024px) {
+            .blog-item {
+                width: calc(50% - 20px);
+            }
+
+            .blog-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-item {
+                width: 100%;
+            }
+
+            .blog-title {
+                font-size: 1.8rem;
+            }
+
+            .blog-item-title {
+                font-size: 1.3rem;
+            }
+
+            .blog-item-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .blog-title {
+                font-size: 1.6rem;
+            }
+
+            .blog-item {
+                padding: 15px;
+            }
+
+            .blog-item-title {
+                font-size: 1.2rem;
+            }
+
+            .blog-item-description {
+                font-size: 0.9rem;
+            }
+
+            .blog-item-link {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+{% endblock %}

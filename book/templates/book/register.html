@@ -1,0 +1,122 @@
+{% extends 'book/base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<style>
+    .register-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        background-color: #fff;
+    }
+
+  
+    .register-container img {
+        margin-bottom: 20px;
+    }
+
+    .register-container h2 {
+        margin-bottom: 20px;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+ 
+    .register-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .register-container input[type="text"],
+    .register-container input[type="password"],
+    .register-container input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+        transition: border-color 0.3s ease;
+    }
+
+    .register-container input:focus {
+        border-color: #0d6b7e;
+        outline: none;
+        box-shadow: 0 0 5px rgba(13, 107, 126, 0.5);
+    }
+
+    .register-container button {
+        background-color: #0d6b7ed0;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: auto;
+        max-width: 150px;
+        margin: 0 auto; 
+    }
+
+    .register-container button:hover {
+        background-color: #0c5c6a;
+    }
+
+   
+    .register-container p {
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .register-container a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    .register-container a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .register-container {
+            max-width: 90%;
+            padding: 15px;
+            margin: 20px auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-container input {
+            padding: 10px;
+        }
+
+        .register-container button {
+            max-width: 120px; /* Smaller button for mobile */
+            padding: 10px 15px;
+        }
+    }
+</style>
+
+<div class="register-container">
+    <img src="{% static 'images/event.png' %}" alt="My Blog Logo" width="50px" height="50px">
+    <h2>Register</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p|safe }}
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+</div>
+
+{% endblock %}
